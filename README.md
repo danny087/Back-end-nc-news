@@ -10,28 +10,48 @@ Our database will be MongoDB. Your Mongoose models have been created for you so 
 
 The below are some of the model methods that you can call on your models.
 
-* [find](http://mongoosejs.com/docs/api.html#model_Model.find)
-* [findOne](http://mongoosejs.com/docs/api.html#model_Model.findOne)
-* [findOneAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate)
-* [findOneAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findOneAndRemove)
-* [findById](http://mongoosejs.com/docs/api.html#model_Model.findById)
-* [findByIdAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate)
-* [findByIdAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove)
-* [update](http://mongoosejs.com/docs/api.html#model_Model.update)
-* [create](https://mongoosejs.com/docs/api.html#model_Model.create)
-* [remove](http://mongoosejs.com/docs/api.html#model_Model-remove)
-* [save](http://mongoosejs.com/docs/api.html#model_Model-save)
-* [count](http://mongoosejs.com/docs/api.html#model_Model.count)
-* [populate](https://mongoosejs.com/docs/api.html#model_Model.populate)
+- [find](http://mongoosejs.com/docs/api.html#model_Model.find)
+- [findOne](http://mongoosejs.com/docs/api.html#model_Model.findOne)
+- [findOneAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findOneAndUpdate)
+- [findOneAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findOneAndRemove)
+- [findById](http://mongoosejs.com/docs/api.html#model_Model.findById)
+- [findByIdAndUpdate](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate)
+- [findByIdAndRemove](http://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove)
+- [update](http://mongoosejs.com/docs/api.html#model_Model.update)
+- [create](https://mongoosejs.com/docs/api.html#model_Model.create)
+- [remove](http://mongoosejs.com/docs/api.html#model_Model-remove)
+- [save](http://mongoosejs.com/docs/api.html#model_Model-save)
+- [count](http://mongoosejs.com/docs/api.html#model_Model.count)
+- [populate](https://mongoosejs.com/docs/api.html#model_Model.populate)
 
 ### Step 1 - Seeding
 
 Data has been provided for both testing and development environments so you will need to write a seed function to seed your database. You should think about how you will write your seed file to use either test data or dev data depending on the environment that you're running in.
 
-1.  You will need to seed the topics and users, followed by the articles and comments. 
+1.  You will need to seed the topics and users, followed by the articles and comments.
 
-* Each article should have a `belongs_to` property, referenced by a topic's `topic_slug`, and have a `created_by` property that references a user's mongo `_id`. 
-* Each comment should also have `created_by` property that references a user's mongo `_id` and should also have a `belongs_to` property that references the specific article's mongo `_id`.
+- Each article should have a `belongs_to` property, referenced by a topic's `topic_slug`, and have a `created_by` property that references a user's mongo `_id`.
+
+- Each comment should also have `created_by` property that references a user's mongo `_id` and should also have a `belongs_to` property that references the specific article's mongo `_id`.
+
+/\_
+{
+"title": "Running a Node App",
+"topic": "coding",
+"created_by": "jessjelly",
+"body": "This is part two of a series on how to get up and running with Systemd and Node.js. This part dives deeper into how to successfully run your app with systemd long-term, and how to set it up in a production environment.",
+"created_at": 1471522072389
+}
+
+article {
+"title": "Running a Node App",
+
+belongs*to : 'football',
+created_by : 'mongoid',
+"body": "This is part two of a series on how to get up and running with Systemd and Node.js. This part dives deeper into how to successfully run your app with systemd long-term, and how to set it up in a production environment.",
+"created_at": 1471522072389
+}
+*/
 
 ### Step 2 - Building and Testing
 
@@ -49,7 +69,7 @@ Data has been provided for both testing and development environments so you will
 Your server should have the following end-points:
 
 ```http
-GET /api 
+GET /api
 # Serves an HTML page with documentation for all the available endpoints
 ```
 
