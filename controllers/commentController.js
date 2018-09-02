@@ -16,10 +16,23 @@ const voteComment = (req, res, next) => {
       { $inc: { votes: -1 } },
       { new: true }
     ).then(commentCount => {
-      console.log(commentCount);
+      console.log(commentCount, "<<<<<<<<<<");
       res.status(201).send({ commentCount });
     });
   }
 };
 
-module.exports = { voteComment };
+const deleteComment = (req, res, next) => {
+  console.log(req.params);
+  return Comment.findByIdAndRemove(req.params._id)
+    .then(comment => {
+      console.log(comment, "<<<<<<<<<<<zzz");
+      if (comment === null) throw { message: "comment not found", status: 404 };
+      else {
+        res.status(201).send({ comment });
+      }
+    })
+    .catch(err => next(err));
+};
+
+module.exports = { voteComment, deleteComment };

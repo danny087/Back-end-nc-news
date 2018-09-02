@@ -2,36 +2,43 @@ const { Topic, Article } = require("../models/index");
 
 const getAllTopics = (req, res, next) => {
   Topic.find({}).then(topics => {
-    // console.log("topics");
     res.status(200).send({ topics });
   });
 };
 
 const getArticleByTopic = (req, res, next) => {
-  console.log(req.params);
   return Article.find({ belongs_to: req.params.topic_slug })
     .then(article => {
-      console.log(article, "**************");
-      if (article !== null) {
+      if (article.length !== 0) {
         res.status(200).send({ article });
+      } else {
+        next({ status: 404, message: "Topic not found" });
       }
     })
     .catch(err => next(err));
 };
 
 const addArticleToTopic = (req, res, next) => {
-  console.log(req.params, req.body, "&&&&&&&&&");
-  Article.create({
-    belongs_to: req.params.topic_slug,
-    title: req.body.title,
-    created_by: req.body.created_by,
-    body: req.body.body
-  })
+  console.log(req.params, "&&&&&&&&&");
+  console.log(req.body, "@@@@@@@@@");
+  Topic.find({ slug: req.params.topic_slug })
+
+    .then(topic => {
+      console.log(topic, "@@@@@@@@@@@@");
+      if (topic.length === 0) throw { message: "topic not found", status: 404 };
+
+      return Article.create({
+        belongs_to: req.params.topic_slug,
+        title: req.body.title,
+        created_by: req.body.created_by,
+        body: req.body.body
+      });
+    })
     .then(article => {
       console.log(article, "lllllllllllllllll");
       res.status(201).send({ article });
     })
-    .catch(console.log);
+    .catch(err => next(err));
 };
 
 module.exports = { getAllTopics, getArticleByTopic, addArticleToTopic };
