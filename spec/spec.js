@@ -5,7 +5,6 @@ const { expect } = require("chai");
 const testData = require("../seed/testData/index");
 const request = require("supertest")(app);
 
-<<<<<<< HEAD
 describe("API", () => {
   let topicDocs, userDocs, commentDocs, articleDocs;
   beforeEach(function() {
@@ -18,26 +17,11 @@ describe("API", () => {
 
   describe("/topics", () => {
     it("GET returns a 200 status with all the topics", () => {
-=======
-describe("/api", () => {
-  let topicDocs, userDocs, commentDocs, articleDocs;
-  beforeEach(function() {
-    this.timeout(5000);
-    return seedDB(testData).then(docs => {
-      [articleDocs, topicDocs, userDocs, commentDocs] = docs;
-      console.log(userDocs[0], "ooooooo");
-    });
-  });
-  describe("/topics", () => {
-    it("GET returns the topics", () => {
-      // console.log(userDocs[0]._id, "<<<<<<");
->>>>>>> e52fe74d96943a144a59883432ffa28dca682b1d
       return request
         .get("/api/topics")
         .expect(200)
         .then(res => {
           expect(res.body.topics.length).to.eql(2);
-<<<<<<< HEAD
           expect(res.body.topics[0].title).equal("Mitch");
           expect(res.body.topics).to.be.an("array");
         });
@@ -118,47 +102,6 @@ describe("/api", () => {
           expect(res.body.msg).to.eql("topic not found");
         });
     });
-=======
-        });
-    });
-  });
-  it("Return all the articles for a certain topic", () => {
-    return request
-      .get(`/api/topics/${topicDocs[0].slug}/articles`)
-      .expect(200)
-      .then(res => {
-        // console.log(res.body, "hhhhhhhh");
-        expect(res.body.articles.length).to.eql(2);
-      });
-  });
-  it("Post a article relating to a certain topic", () => {
-    // console.log(userDocs[0], "<<<<<<");
-    const newArticle = {
-      title: "They're not exactly dogs, are they?",
-      topic: "cats",
-      created_by: userDocs[0]._id,
-      body: "Well? Think about it.",
-      created_at: 1500659650346
-    };
-
-    return request
-      .post(`/api/topics/${topicDocs[0].slug}/articles`)
-      .send(newArticle)
-      .expect(201)
-      .then(res => {
-        console.log("??????", res.body, "<<<<<<<<<<<<<<<<lll");
-        expect(res.body.articles).has.all.keys(
-          "belongs_to",
-          "title",
-          "created_by",
-          "body",
-          "created_at",
-          "votes",
-          "_id",
-          "__v"
-        );
-      });
->>>>>>> e52fe74d96943a144a59883432ffa28dca682b1d
   });
   describe("/api/articles", () => {
     it("get all of the articles", () => {
@@ -166,7 +109,6 @@ describe("/api", () => {
         .get("/api/articles")
         .expect(200)
         .then(res => {
-<<<<<<< HEAD
           expect(res.body.articles.length).to.eql(4);
           expect(res.body.articles[0]).to.have.all.keys(
             "_id",
@@ -181,18 +123,11 @@ describe("/api", () => {
         });
     });
 
-=======
-          console.log(res.body.articles, "ededede");
-          expect(res.body.articles.length).to.eql(4);
-        });
-    });
->>>>>>> e52fe74d96943a144a59883432ffa28dca682b1d
     it("get an individual article", () => {
       return request
         .get(`/api/articles/${articleDocs[0]._id}`)
         .expect(200)
         .then(res => {
-<<<<<<< HEAD
           expect(res.body.article.belongs_to).to.equal("mitch");
           expect(res.body.article).to.have.all.keys(
             "votes",
@@ -225,18 +160,11 @@ describe("/api", () => {
         });
     });
     it("Get all the comments for a individual article", () => {
-=======
-          expect(res.body.article.belongs_to).to.eql("mitch");
-        });
-    });
-    it.only("add a new comment to an article", () => {
->>>>>>> e52fe74d96943a144a59883432ffa28dca682b1d
       return request
         .get(`/api/articles/${articleDocs[0]._id}/comments`)
         .expect(200)
         .then(res => {
           expect(res.body.comments.length).to.eql(2);
-<<<<<<< HEAD
           expect(res.body.comments[0]).to.have.all.keys(
             "votes",
             "_id",
@@ -400,23 +328,6 @@ describe("/api", () => {
         .expect(200)
         .then(res => {
           expect(res.body.users[0].username).to.equal("butter_bridge");
-=======
-        });
-    });
-    it("add new comment to an article", () => {
-      return request
-        .post(`/api/articles${articleDocs[0]._id}/commments`)
-        .send(newComment)
-        .expect(201)
-        .then(res => {
-          const newArticle = {
-            title: "They're not exactly dogs, are they?",
-            topic: "cats",
-            created_by: userDocs[0]._id,
-            body: "Well? Think about it.",
-            created_at: 1500659650346
-          };
->>>>>>> e52fe74d96943a144a59883432ffa28dca682b1d
         });
     });
   });

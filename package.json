@@ -4,11 +4,7 @@
   "description": "Northcoders News API Sprint",
   "main": "index.js",
   "scripts": {
-<<<<<<< HEAD
     "test": "mocha spec",
-=======
-    "test": "mocha spec/*",
->>>>>>> e52fe74d96943a144a59883432ffa28dca682b1d
     "start": "node index.js",
     "dev": "nodemon listen.js"
   },
@@ -17,17 +13,11 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.3",
-<<<<<<< HEAD
     "mongoose": "^5.2.10"
-=======
-    "lodash": "^4.17.10",
-    "mongoose": "^5.2.8"
->>>>>>> e52fe74d96943a144a59883432ffa28dca682b1d
   },
   "devDependencies": {
     "chai": "^4.1.2",
     "mocha": "^5.2.0",
-<<<<<<< HEAD
     "nodemon": "^1.18.3",
     "supertest": "^3.1.0"
   },
@@ -40,9 +30,4 @@
     "url": "https://github.com/northcoders/BE2-northcoders-news/issues"
   },
   "homepage": "https://github.com/northcoders/BE2-northcoders-news#readme"
-=======
-    "nodemon": "^1.17.4",
-    "supertest": "^3.0.0"
-  }
->>>>>>> e52fe74d96943a144a59883432ffa28dca682b1d
 }
