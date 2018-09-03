@@ -18,8 +18,7 @@ const getArticleById = (req, res, next) => {
 
 const getAllComments = (req, res, next) => {
   Comment.find({
-    belongs_to: req.params._id,
-    body: "I find this existence challenging"
+    belongs_to: req.params._id
   }).then(comments => {
     // console.log(comments, "oooooooo");
     res.status(200).send({ comments });

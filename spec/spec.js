@@ -57,16 +57,7 @@ describe("API", () => {
           expect(res.body.msg).to.equal("Topic not found");
         });
     });
-    it("Get returns a 400 for article that doesnt exist", () => {
-      // console.log(topicDocs[0].slug, "lllllllllllll");
-      return request
-        .get(`/api/topics/${userDocs[0]._id}/articles`)
-        .expect(400)
-        .then(res => {
-          console.log(res.body, "<<<<<<<<<,");
-          expect(res.body.msg).to.equal("Topic not found");
-        });
-    });
+
     it("POST  Adds a new article to a topic", () => {
       // console.log(articleDocs, "<<<<<<<<<<<,");
       const newArticle = {
@@ -108,23 +99,6 @@ describe("API", () => {
         .expect(404)
         .then(res => {
           console.log(res.body, "kkkkkkkkkkkk");
-          expect(res.body.msg).to.eql("topic not found");
-        });
-    });
-    it.only("Posts a new article with atopic that dosnt exist", () => {
-      // console.log(articleDocs, "<<<<<<<<<<<,");
-      const newArticle = {
-        title: "Living in the shadow of a great man",
-        created_by: "unknown",
-        body: "I find this existence challenging",
-        belongs_to: "dogs"
-      };
-      return request
-        .post(`/api/topics/notopic/articles`)
-        .send(newArticle)
-        .expect(400)
-        .then(res => {
-          console.log(res.body, "@@@@@@@@@@@@@");
           expect(res.body.msg).to.eql("topic not found");
         });
     });
