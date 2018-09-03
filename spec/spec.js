@@ -94,7 +94,7 @@ describe("API", () => {
           expect(res.body.article.belongs_to).to.equal("mitch");
         });
     });
-    it.only("POST send 404 when topic doesnt exist", () => {
+    it("POST send 404 when topic doesnt exist", () => {
       // console.log(articleDocs, "<<<<<<<<<<<,");
       const newArticle = {
         title: "Living ",
@@ -103,7 +103,7 @@ describe("API", () => {
         belongs_to: "butter_bridge"
       };
       return request
-        .post(`/api/topics/${topicDocs[1].slug}/articles`)
+        .post(`/api/topics/${userDocs[0].slug}/articles`)
         .send(newArticle)
         .expect(404)
         .then(res => {
@@ -111,7 +111,7 @@ describe("API", () => {
           expect(res.body.msg).to.eql("topic not found");
         });
     });
-    it("Posts a new article with atopic that dosnt exist", () => {
+    it.only("Posts a new article with atopic that dosnt exist", () => {
       // console.log(articleDocs, "<<<<<<<<<<<,");
       const newArticle = {
         title: "Living in the shadow of a great man",
