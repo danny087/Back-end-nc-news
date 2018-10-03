@@ -3,6 +3,7 @@ const { apiRouter } = require("./routers/apiRouter");
 const mongoose = require("mongoose");
 const { DB_URL } = require("./config");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 app.use(bodyParser.json());
 mongoose
   .connect(
@@ -10,7 +11,7 @@ mongoose
     { useNewUrlParser: true }
   )
   .then(console.log(`connected to ${DB_URL}`));
-
+app.use(cors());
 app.use("/api", apiRouter);
 
 app.use((err, req, res, next) => {
