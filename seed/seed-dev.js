@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const DB_URL = "mongodb://localhost:27017/NC-news";
+const DB_URL = "mongodb://localhost:27017/NC_news";
 // "mongodb://localhost:27017/NC_news"
 const data = require("./devData");
 const seedDB = require("./seed");

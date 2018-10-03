@@ -1,13 +1,20 @@
 const { Article, Comment } = require("../models/index");
 
 const getAllArticles = (req, res, next) => {
-  Article.find({}).then(articles => {
-    res.status(200).send({ articles });
-  });
+  Article.find({})
+    .then(articles => {
+      const promisedCommentCounts = articles.map(article => {
+        console.log(article._id);
+        return Comment.countDocuments({ belongs_to: article._id });
+      });
+      return Promise.all([articles, ...promisedCommentCounts]);
+    })
+    .then(([articles, ...commentCounts]) => {
+      res.status(200).send({ articles });
+    });
 };
 
 const getArticleById = (req, res, next) => {
-  console.log(req.params, "<<<<<<<<");
   Article.findById(req.params._id)
     .then(article => {
       if (article === null) throw { message: "topic not found", status: 404 };
