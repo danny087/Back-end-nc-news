@@ -18,20 +18,17 @@ const seedDB = ({ topicData, userData, articleData, commentData }) => {
     })
     .then(([topicDocs, userDocs]) => {
       const articles = generateArticles([articleData, userDocs, topicDocs]);
+      return Promise.all([Article.insertMany(articles), topicDocs, userDocs]);
+    })
+    .then(([articleDocs, topicDocs, userDocs]) => {
+      const comments = generateComments([commentData, articleDocs, userDocs]);
       return Promise.all([
-        Article.insertMany(articles),
+        Comment.insertMany(comments),
+        articleDocs,
         topicDocs,
         userDocs
-      ]).then(([articleDocs, topicDocs, userDocs]) => {
-        const comments = generateComments([commentData, articleDocs, userDocs]);
-        return Promise.all([
-          Comment.insertMany(comments),
-          articleDocs,
-          topicDocs,
-          userDocs
-        ]).then(([commentDocs, articleDocs, topicDocs, userDocs]) => {
-          return [articleDocs, topicDocs, userDocs, commentDocs];
-        });
+      ]).then(([commentDocs, articleDocs, topicDocs, userDocs]) => {
+        return [articleDocs, topicDocs, userDocs, commentDocs];
       });
     });
 };

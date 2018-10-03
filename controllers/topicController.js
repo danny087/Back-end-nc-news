@@ -19,12 +19,9 @@ const getArticleByTopic = (req, res, next) => {
 };
 
 const addArticleToTopic = (req, res, next) => {
-  console.log(req.params, "&&&&&&&&&");
-  console.log(req.body, "@@@@@@@@@");
   Topic.find({ slug: req.params.topic_slug })
 
     .then(topic => {
-      console.log(topic, "@@@@@@@@@@@@");
       if (topic.length === 0) throw { message: "topic not found", status: 404 };
 
       return Article.create({
