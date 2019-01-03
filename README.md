@@ -1,19 +1,15 @@
 
-
 Northcoders News Backend
-
-
 
 Welcome to the Northcoders News API! This is an api i made for my NC-news front end. The api has endpoint fetching data of articles,commets,topics and users. if a incorrect input is passed you will recive an error meassge telling you how to fix this issue.
 
-For developers
-Clone the source locally: https://github.com/danny087/BE2-northcoders-news.git
+This applaction was made for me to get to grips with everything I learnt when on the back-end side of the course at northcoders.
 
-Install project dependencies:
+For developers Clone the source locally: https://github.com/danny087/BE2-northcoders-news.git
 
-$ npm install
+Download & Setup To download this project, take the following steps:
 
-
+Fork the project to your own git hub profile. Open your terminal, and navigate to where you would like to download the project. Clone the repo, by typing "git clone" and then the URL of your repo (you can find this by clicking the green 'Clone or Download' button) now install the project dependencies by typing npm install into you terminal.
 
 Running tests
 
