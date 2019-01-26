@@ -1,7 +1,7 @@
 
 # Northcoders News Backend
 
-Welcome to my Northcoders News API! This is my CRUD API I made for my NC-news front end. The API has endpoint fetching data for articles, comments, topics and users. If a incorrect input is passed,you will receive an error meassge telling you how to fix this issue.
+Welcome to my Northcoders News API! This is my Crud API I made for my NC-news front end. The API has endpoint fetching data for articles, comments, topics and users. If a incorrect input is passed,you will receive an error meassge telling you how to fix this issue.
 
 This application was made for me to get to grips with everything I learnt while on the back-end side of the course at Northcoders.
 
